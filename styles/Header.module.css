@@ -1,0 +1,26 @@
+.container{
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.container > a{
+    font-family: var(--font-retro);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.FaRedHat{
+  fill: #000;
+  height: 2rem;
+  width: auto;
+  margin-right: .5rem;
+  transition: transform 0.8s,fill 0.8s;
+}
+.container > a:hover .FaRedHat{
+    fill: var(--primary-color);
+    transform: rotate(20deg);
+}
