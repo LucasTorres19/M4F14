@@ -40,7 +40,7 @@ export default function Plays({ initialData = {items: [], nextPageToken:null} } 
         <h1 className={styles.title}>
             Plays
         </h1>
-        <iframe width="500px" height="300px" src="https://www.youtube.com/embed/TN9CdtIzzO4?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="jsx-3953038702"></iframe>
+        <iframe width="500px" height="300px" src="https://www.youtube.com/embed/TN9CdtIzzO4?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <ul className={styles.grid}>
             {videos.map((item) => {
                 const { id, snippet = {} } = item
