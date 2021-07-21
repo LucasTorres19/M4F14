@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  
 }
 .container > a{
     font-family: var(--font-retro);
@@ -12,7 +13,13 @@
     flex-direction: row;
     align-items: center;
 }
-
+.container > nav{
+  padding-left: 100px;
+  font-family: var(--font-retro);
+}
+.container > nav > a:hover > p{
+  font-size: large;
+}
 .FaRedHat{
   fill: #000;
   height: 2rem;

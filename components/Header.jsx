@@ -11,6 +11,15 @@ export default function Header() {
           <p>M4FI4</p>
         </a>
       </Link>
+      <nav>
+        <Link href = "/plays">
+          <a>
+            <p>Plays</p>
+          </a>
+        </Link>
+      </nav>
+      
+      
     </header>
   )
 }
