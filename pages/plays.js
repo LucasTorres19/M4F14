@@ -1,5 +1,5 @@
 import styles from '../styles/Plays.module.css'
-
+import Image from 'next/image'
 const YOUTUBE_API = "https://www.googleapis.com/youtube/v3/playlistItems"
 const LIST_UPLOADED_VIDEOS_ID = "UU3NkyGdVS727tgzmxUajBjg"
 export async function getServerSideProps(){
@@ -27,10 +27,7 @@ export default function Plays({ data }) {
                 return(
                     <li key={id} className={styles.card}>
                         <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`}>
-                        <p>
-                            <img width={medium.width} height={medium.height} src={medium.url}></img>
-                        </p>
-                        
+                            <Image width={medium.width} height={medium.height} src={medium.url}></Image>
                             <h3>{ title }</h3>
                         </a>
                     </li>
