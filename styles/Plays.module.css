@@ -1,12 +1,10 @@
 .grid {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
+    width: 90%;
     list-style: none;
     padding: 0;
     margin-left: 0;
-    max-width: 800px;
     margin-top: 3rem;
 }
 .title {
@@ -33,7 +31,6 @@
 }
 .card {
     margin: 1rem;
-    flex-basis: 45%;
     padding: 1.5rem;
     text-align: left;
     color: inherit;
@@ -41,5 +38,4 @@
     border: 1px solid #eaeaea;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
-    width: 45%;
 }
