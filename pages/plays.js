@@ -47,15 +47,15 @@ export default function Plays({ initialData = {items: [], nextPageToken:null} } 
         <h1 className={styles.title}>
             Plays
         </h1>
-        <iframe width="500px" height="300px" src={`https://www.youtube.com/embed/${videoPrincipalId}?autoplay=1`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        <iframe width="500px" height="300px" src={`https://www.youtube.com/embed/${videoPrincipalId}?autoplay=1`} frameBorder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <ul className={styles.grid}>
             {videos.map((item) => {
                 const { id, snippet = {} } = item
                 const { title, thumbnails = {}, resourceId } = snippet
                 const { medium = {} } = thumbnails  
                 return(
-                    <li key={id.videoId} className={styles.card}>
-                        <a onClick={(e) => handleClick(e, id.videoId)}>
+                    <li key={id.videoId} className={styles.card} onClick={(e) => handleClick(e, id.videoId)}>
+                        <a>
                             <Image width={medium.width} height={medium.height} src={medium.url}></Image>
                             <h3>{ title }</h3>
                         </a>

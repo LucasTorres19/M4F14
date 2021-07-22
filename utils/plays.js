@@ -10,8 +10,6 @@ export async function getPopularVideos( pageToken = null ){
 		key: process.env.YOUTUBE_API_KEY,
 		pageToken
 	}
-	console.log(pageToken)
-	console.log(PARAMS.pageToken)
 	const response = await fetch(YOUTUBE_API + "/search" + jsonToQueryString(PARAMS))
     const data = await response.json()
 
