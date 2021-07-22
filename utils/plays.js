@@ -1,5 +1,5 @@
 const YOUTUBE_API = "https://www.googleapis.com/youtube/v3"
-export async function getPopularVideos({pageToken} = {pageToken: null}){
+export async function getPopularVideos( pageToken = null ){
 	const CHANNEL_ID = "UC3NkyGdVS727tgzmxUajBjg"
 	const PARAMS = {
 		part: "snippet",
@@ -10,7 +10,8 @@ export async function getPopularVideos({pageToken} = {pageToken: null}){
 		key: process.env.YOUTUBE_API_KEY,
 		pageToken
 	}
-
+	console.log(pageToken)
+	console.log(PARAMS.pageToken)
 	const response = await fetch(YOUTUBE_API + "/search" + jsonToQueryString(PARAMS))
     const data = await response.json()
 

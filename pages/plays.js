@@ -27,20 +27,27 @@ export async function getServerSideProps(){
 export default function Plays({ initialData = {items: [], nextPageToken:null} } = {initialData:{} }) {
 	const [nextPageToken, setNextPageToken] = useState(initialData?.nextPageToken || null)
     const [videos, setVideos] = useState(initialData?.items || [])
+    const [videoPrincipalId, setVideoPrincipalId] = useState(initialData?.items[0].id.videoId)
     const nextPage = async (e) => {
-        window.scrollTo(0,0)
         e.preventDefault()
         const consulta = await fetch(`/api/plays?pageToken=${nextPageToken}`)
         const newData = await consulta.json()
         setNextPageToken(newData.nextPageToken)
         setVideos((previousVideos)=> [...previousVideos, ...newData.items])
     }
+
+    const handleClick = (e, id) => {
+        window.scrollTo(0,0)
+        e.preventDefault()
+        setVideoPrincipalId(id)
+    }
+
     return (
         <main className={styles.main}>
         <h1 className={styles.title}>
             Plays
         </h1>
-        <iframe width="500px" height="300px" src="https://www.youtube.com/embed/TN9CdtIzzO4?autoplay=1" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        <iframe width="500px" height="300px" src={`https://www.youtube.com/embed/${videoPrincipalId}?autoplay=1`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <ul className={styles.grid}>
             {videos.map((item) => {
                 const { id, snippet = {} } = item
@@ -48,7 +55,7 @@ export default function Plays({ initialData = {items: [], nextPageToken:null} } 
                 const { medium = {} } = thumbnails  
                 return(
                     <li key={id.videoId} className={styles.card}>
-                        <a href={`https://www.youtube.com/watch?v=${id?.videoId}`}>
+                        <a onClick={(e) => handleClick(e, id.videoId)}>
                             <Image width={medium.width} height={medium.height} src={medium.url}></Image>
                             <h3>{ title }</h3>
                         </a>
