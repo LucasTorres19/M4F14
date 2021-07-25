@@ -3,7 +3,6 @@ export default async function handler(req, res) {
 	try{
 	switch(req.method) {
 		case 'GET':
-			console.log(req.query.pageToken)
 			const popularVideos = await getPopularVideos(req.query.pageToken)
 			res.json(popularVideos);
 		break;
