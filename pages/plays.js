@@ -80,10 +80,24 @@ const Plays = ({ videosData }) => {
         </main>
     )
 }
-Plays.getInitialProps = async () =>{
-
-    const res = await fetch(`http://localhost:3000/api/videosHandler`, {method: 'GET'})
+Plays.getInitialProps = async ({ req }) =>{
+    const { protocol, host } = absoluteUrl(req)
+    const apiURL = `${protocol}//${host}`
+    const res = await fetch(`${apiURL}/api/videosHandler`, {method: 'GET'})
     const { data } = await res.json()
     return {videosData: data}
 }
+function absoluteUrl (req, setLocalhost) {
+    var protocol = 'https:'
+    var host = req ? req.headers.host : window.location.hostname
+    if (host.indexOf('localhost') > -1) {
+      if (setLocalhost) host = setLocalhost
+      protocol = 'http:'
+    }
+  
+    return {
+      protocol: protocol,
+      host: host
+    }
+  }
 export default Plays
