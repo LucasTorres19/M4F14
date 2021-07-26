@@ -38,12 +38,11 @@ export async function getViews( videoIds){
 		}
 		const response = await fetch(YOUTUBE_API + "/videos" + jsonToQueryString(PARAMS))
 		let data = await response.json()
-		console.log(data)
+
 		data.items.forEach(item=>{
 			views.push(item.statistics.viewCount)
 		})
 	}
-	console.log(views.length)
 	return views
 }
 

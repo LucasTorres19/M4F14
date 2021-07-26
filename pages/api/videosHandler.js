@@ -1,5 +1,5 @@
 import dbConnect from "../../utils/mongodb";
-import {getPopularVideos, getViews} from "../../utils/plays"
+import {getPopularVideos, getViews} from "../../utils/youtubeApi"
 import Video from '../../models/Video'
 
 dbConnect();
@@ -61,4 +61,3 @@ export default async function handler(req, res){
 
     }
 }
-   

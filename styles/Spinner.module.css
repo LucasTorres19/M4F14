@@ -1,0 +1,14 @@
+.Spinner {
+    border: 6px solid var(--gray-100);
+    border-radius: 50%;
+    border-left-color: var(--primary-color);
+    animation: loop 1s linear infinite;
+}
+@keyframes loop {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
