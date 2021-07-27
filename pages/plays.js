@@ -20,7 +20,7 @@ function Plays (){
                 setIsLoading(false)
             })
         }catch(e){
-            console.log(e)
+            console.error(e)
         }
     } 
     useEffect(()=>{
