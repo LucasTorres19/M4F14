@@ -10,7 +10,7 @@ export default async function handler(req, res){
     switch(method){
         case 'GET':
             try {
-                const videos = await Video.find({})
+                const videos = await Video.find({}).sort({views: -1})
                 res.status(200).json({success: true, data: videos})
             } catch (error) {
                 res.status(400).json({success: false})
@@ -25,11 +25,13 @@ export default async function handler(req, res){
                 newVideos.items.forEach((video) => {
                     const { id, snippet = {} } = video
                     const { title, publishedAt, thumbnails = {}, resourceId } = snippet
+                    const textArea = document.createElement('textarea');
+                    textArea.innerHTML = title;
                     const { medium = {} } = thumbnails
                     const {width, height, url} = medium
                     const { videoId } = id
                     Video.create({
-                        "title": title,
+                        "title": textArea.value,
                         "publishedAt": publishedAt,
                         "videoId": videoId,
                         "width": width,
@@ -55,6 +57,7 @@ export default async function handler(req, res){
                 res.status(400).json({success: false, data: error})
             }
             break;
+            
         default:
             res.status(400).json({success: false})
             break;

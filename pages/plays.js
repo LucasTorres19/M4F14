@@ -2,14 +2,15 @@ import styles from '../styles/Plays.module.css'
 import { FaSortAmountDownAlt, FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import createSortSwitch from '../utils/createSortSwitch'
 import Spinner from '../components/Spinner'
-
+import sortSwitch from '../utils/sortSwitch'
 function Plays (){
     
     const [videos, setVideos] = useState(null)
     const [videoPrincipalId, setVideoPrincipalId] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [keyword, setKeyword] = useState('')
+    const videosFiltrados = videos?.filter(video => video.title.toLowerCase().includes(keyword))
     const getData = async () => {
         try{
             const data = await fetch('/api/videosHandler', {method: 'GET'})
@@ -31,24 +32,11 @@ function Plays (){
         e.preventDefault()
         setVideoPrincipalId(id)
     }
-    const SortSwitch = createSortSwitch(setVideos)
     
     const $ = (selector) => document.querySelector(selector)
 
-    const searchVideo = ()=>{
-        const $inp = $('#searchVideo')
-        const query = $inp.value
-        setVideos((previousVideos) => {
-            const newVideos = previousVideos.map((video) => {
-                if(video.title.toLowerCase().includes(query)){ 
-                    video.display= "block"
-                    return video
-                }
-                video.display = "none"
-                return video
-            })
-            return [...newVideos]
-        })
+    const searchVideo = (e)=>{
+        setKeyword(e.target.value)
     }
     return (
         
@@ -60,31 +48,36 @@ function Plays (){
         </h1>
         <iframe width="500px" height="300px" src={`https://www.youtube.com/embed/${videoPrincipalId}?autoplay=0`} frameBorder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <div className={styles.filtersContainer}>
-            <input type="text" placeholder="Buscar..." className={styles.searchVideo} id="searchVideo" onChange={searchVideo}></input>
-            <div className={styles.dropdown}>
-                <FaSortAmountDownAlt/>
-                <span>Ordenar por ...</span>
-                <div className={styles.dropdownContent}>
-                    <p onClick={SortSwitch['alfabeticamente']} className={styles.dropdownOption}>Alfabeticamente</p>
-                    <p onClick={(e)=>SortSwitch['orderByProp'](e,"likes","asc")} className={styles.dropdownOption}>Más gustados</p>
-                    <p onClick={(e)=>SortSwitch['orderByProp'](e,"likes")} className={styles.dropdownOption}>Menos gustados</p>
-                    <p onClick={(e)=>SortSwitch['orderByProp'](e,"views")} className={styles.dropdownOption}>Más visitas</p>
-                    <p onClick={(e)=>SortSwitch['orderByProp'](e,"views", "asc")} className={styles.dropdownOption}>Menos visitas</p>
-                    <p onClick={(e)=>SortSwitch['fecha'](e,"asc")} className={styles.dropdownOption}>Más antiguos</p>
-                    <p onClick={SortSwitch['fecha']} className={styles.dropdownOption}>Más recientes</p>
-                </div>
+            <input type="text" placeholder="Buscar..." className={styles.searchVideo} onChange={searchVideo}></input>
+            <div className={styles.dropdownContainer}>
+                <label htmlFor="select">
+                    <FaSortAmountDownAlt />
+                </label>
+                <select id="select" onChange={(e) => {setVideos([...sortSwitch(e, videos)])}}className={styles.dropdownContent}>
+                    <option value='title' isdesc="true">Alfabeticamente</option>
+                    <option value='like' isdesc="true">Más gustados</option>
+                    <option value='like' >Menos gustados</option>
+                    <option value='views' isdesc="true" className={styles.selected}>Más visitas</option>
+                    <option value='views' >Menos visitas</option>
+                    <option value='publishedAt' >Más antiguos</option>
+                    <option value='publishedAt' isdesc="true">Más recientes</option>
+                </select>
             </div>
         </div>
-        <ul className={styles.grid}>
+        
             {
-            
-            videos.map((item) => {
-                if(!item)return
+            videosFiltrados.length===0?
+            <>
+                <Image src="/notFound.svg" width="250px" height="200px" alt="Not found."></Image>
+                <p>No se encontraron resultados.</p>
+            </>
+            :<ul className={styles.grid}>
+                {videosFiltrados.map((item) => {
                 const { _id, videoId, url, height, width, title } = item
                 return(
-                    <li key={_id} className={styles.card} style={item.display?{display: item.display}:{display: "block"}} onLoad={() => console.log("se renderizó un video")} onClick={(e) => handleClick(e, videoId)}>
+                    <li key={_id} className={styles.card} style={{}}  onClick={(e) => handleClick(e, videoId)}>
 
-                        <Image width={width} height={height} src={url} alt={title}></Image>
+                        <Image onLoad={() => console.log("se renderizó un video")} width={width} height={height} src={url} alt={title}></Image>
                         <h3>{ title }</h3>
 
                         {/* <div className={styles.rateContainer}>
@@ -94,9 +87,9 @@ function Plays (){
                         
                     </li> 
                 )
-            })
+            })}
+            </ul>
             }
-        </ul>
         </>
         }   
         </main>
