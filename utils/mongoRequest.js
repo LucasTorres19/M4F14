@@ -2,10 +2,9 @@ import dbConnect from "./mongodb";
 import Video from '../models/Video'
 import {getPopularVideos} from './youtubeApi'
 
-
+dbConnect()
 async function getVideos(){
     try {
-    dbConnect()
     return await Video.find({})
     } catch (e){
         return {success: false, data: e}
