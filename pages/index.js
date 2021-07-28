@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-
+import Link from 'next/link'
 export default function Home() {
   return (
     <div >
@@ -74,7 +74,7 @@ export default function Home() {
               Llora por los difuntos de la M4F14. (¿Qué esperas?)
             </p>
           </a>
-          <a
+          <Link
             href="/chismes"
             className={styles.card}
           >
@@ -82,7 +82,7 @@ export default function Home() {
             <p>
               Averigua porque está pepe en el cementerio.
             </p>
-          </a>
+          </Link>
         </div>
         
       </main>
