@@ -46,8 +46,8 @@
     margin-top: 1rem;
 }
 .searchVideo {
-    border: 2px solid var(--gray-200);
-    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
 }
 /* dropdwon */
 .dropdownContent {

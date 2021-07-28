@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-
+import Link from 'next/link'
 export default function Home() {
   return (
     <div >
@@ -46,7 +46,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="https://twitter.com/LucasTorres112"
             className={styles.card}
           >
             <h2>Mejores jugadas &rarr;</h2>
