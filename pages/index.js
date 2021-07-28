@@ -46,7 +46,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="/plays"
             className={styles.card}
           >
             <h2>Mejores jugadas &rarr;</h2>
@@ -75,7 +75,7 @@ export default function Home() {
             </p>
           </a>
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="/chismes"
             className={styles.card}
           >
             <h2>Chismes &rarr;</h2>

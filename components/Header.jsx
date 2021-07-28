@@ -17,6 +17,13 @@ export default function Header() {
             <p>Plays</p>
           </a>
         </Link>
+        </nav>
+        <nav>
+        <Link href = "/chismes">
+          <a>
+            <p>Chismes</p>
+          </a>
+        </Link>
       </nav>
       
       

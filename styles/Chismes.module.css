@@ -1,0 +1,46 @@
+.container{
+    display: grid;
+    grid-template-columns:repeat(2, 30rem);
+    grid-template-rows:repeat(4, 20rem);
+}
+.card{
+    background-color:var(--bg-blue-600);
+   color: var(--text-color);
+    border: 1px solid var(--gray-200) ;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.card > h1{
+    padding-bottom: 1px;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--gray-200);
+    
+}
+.card > p{
+    font-size: 1em;
+}
+
+.votacion > button{
+    font-size: 1em;
+    height: fit-content;
+    width: fit-content;
+    border:none;
+    margin-top: 2px;
+    border-radius: 5px;
+
+}
+.votacion > button:hover{
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+/* para los pibes buenos hacer que el boton este estatico en un lugar y que no se mueva por el texto y puto el que lee */
+.votacion{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    
+}
