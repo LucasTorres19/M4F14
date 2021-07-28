@@ -46,7 +46,7 @@ export default function Home() {
           </a>
 
           <a
-            href="/plays"
+            href="https://twitter.com/LucasTorres112"
             className={styles.card}
           >
             <h2>Mejores jugadas &rarr;</h2>
@@ -74,15 +74,15 @@ export default function Home() {
               Llora por los difuntos de la M4F14. (¿Qué esperas?)
             </p>
           </a>
-          <Link
-            href="/chismes"
+          <a
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
           >
             <h2>Chismes &rarr;</h2>
             <p>
               Averigua porque está pepe en el cementerio.
             </p>
-          </Link>
+          </a>
         </div>
         
       </main>
