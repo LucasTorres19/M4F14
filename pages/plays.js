@@ -1,9 +1,10 @@
 import styles from '../styles/Plays.module.css'
-import { FaSortAmountDownAlt, FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa'
+import { FaSortAmountDownAlt } from 'react-icons/fa'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Spinner from '../components/Spinner'
 import sortSwitch from '../utils/sortSwitch'
+import Card from '../components/Card'
 function Plays (){
     
     const [videos, setVideos] = useState(null)
@@ -27,13 +28,16 @@ function Plays (){
     useEffect(()=>{
         getData()
     },[])
-    const handleClick = (e, id) => {
+    const changeIframeSrc = (e, id) => {
         window.scrollTo(0,0)
         e.preventDefault()
         setVideoPrincipalId(id)
     }
-    
-    const $ = (selector) => document.querySelector(selector)
+    const addToFavs = (e, id) => {
+        window.scrollTo(0,0)
+        e.preventDefault()
+        setVideoPrincipalId(id)
+    }
 
     const searchVideo = (e)=>{
         setKeyword(e.target.value)
@@ -53,7 +57,7 @@ function Plays (){
                 <label htmlFor="select">
                     <FaSortAmountDownAlt />
                 </label>
-                <select id="select" onChange={(e) => {setVideos([...sortSwitch(e, videos)])}}className={styles.dropdownContent}>
+                <select id="select" defaultValue="views" onChange={(e) => {setVideos([...sortSwitch(e, videos)])}}className={styles.dropdownContent}>
                     <option value='title' isdesc="true">Alfabeticamente</option>
                     <option value='like' isdesc="true">Más gustados</option>
                     <option value='like' >Menos gustados</option>
@@ -67,25 +71,16 @@ function Plays (){
         
             {
             videosFiltrados.length===0?
+   
             <>
                 <Image src="/notFound.svg" width="250px" height="200px" alt="Not found."></Image>
                 <p>No se encontraron resultados.</p>
             </>
             :<ul className={styles.grid}>
                 {videosFiltrados.map((item) => {
-                const { _id, videoId, url, height, width, title } = item
+                
                 return(
-                    <li key={_id} className={styles.card} style={{}}  onClick={(e) => handleClick(e, videoId)}>
-
-                        <Image onLoad={() => console.log("se renderizó un video")} width={width} height={height} src={url} alt={title}></Image>
-                        <h3>{ title }</h3>
-
-                        {/* <div className={styles.rateContainer}>
-                        <FaRegThumbsUp/>
-                        <FaRegThumbsDown/>
-                        </div> */}
-                        
-                    </li> 
+                    <Card key={item._id} props = {item} functions={{changeIframeSrc, addToFavs}}/>
                 )
             })}
             </ul>

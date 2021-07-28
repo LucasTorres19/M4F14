@@ -8,10 +8,9 @@
     margin: 0;
 }
 .title {
+    margin: 1.5rem 0;
     font-family: var(--font-retro);
-    margin: 0;
     font-weight: 400;
-    text-shadow: -9px 5px 11px black;
     font-size: 2rem;
     color:var(--primary-color);
     -webkit-text-stroke: 2px black;
@@ -26,11 +25,8 @@
     justify-content: center;
     align-items: center;
   }
-.grid img {
-    max-width: 100%;
-}
 .card {
-    cursor: pointer;
+    position:relative;
     margin: 1rem;
     padding: 1.5rem;
     text-align: left;
@@ -73,16 +69,14 @@
 .dropdownOptionSelected:hover{
     background-color: var(--gray-100)
 }
-.rateContainer{
-    display: grid;
-    grid-auto-flow: column;
-    place-content: space-between;
+.cardStar {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    fill: white;
+    font-size: 28px;
+    cursor: pointer;
 }
-.rateContainer > *{
-    font-size:2rem;
-
-}
-.rateContainer > *:click{
-    fill: green;
-
+.card > h3{
+    cursor: pointer;
 }
