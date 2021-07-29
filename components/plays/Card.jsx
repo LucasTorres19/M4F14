@@ -1,4 +1,4 @@
-import styles from '../styles/Card.module.css'
+import styles from '../../styles/Card.module.css'
 import { FaStar} from 'react-icons/fa'
 import {useState} from 'react'
 import Image from 'next/image'

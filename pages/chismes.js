@@ -1,27 +1,30 @@
 import styles from '../styles/Chismes.module.css'
 import { FaArrowUp, FaArrowDown} from 'react-icons/fa'
+import Title from '../components/Title'
 export default function Chismes() {
-  return (
-    <div className={styles.container}>
+    const items = []
 
+    for(let i=0; i<20;i++){
+        items.push(
         <div className={styles.card}>
             <h1>Pepe sigue vivo?</h1>
-            <p>Poner descripcion aqui</p> 
             <div className={styles.votacion}>
                 <button> <FaArrowUp/></button>
+                <div className={styles.votes}>0</div>
                 <button> <FaArrowDown/></button>
             </div>
+            <textarea value="hola" className={styles.description}rows="12" cols="41"disabled></textarea>
+            <div className={styles.publishedAt}>28/7/2021</div>
         </div>
-
-        <div className={styles.card}>
-            <h1>Quien trolleo en el D&D?</h1>
-            <p>El dungeon master si se cae a pedazos </p> 
-            <div className={styles.votacion}>
-                <button> <FaArrowUp/></button>
-                <button> <FaArrowDown/></button>
-            </div>
+        )
+    }
+  return (
+    <main className={styles.main}>
+        <Title title="Chismes"/>
+        <div className={styles.container}>
+            
+        {items}
         </div>
-
-    </div>
+    </main>
   )
 }

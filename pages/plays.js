@@ -4,7 +4,8 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Spinner from '../components/Spinner'
 import sortSwitch from '../utils/sortSwitch'
-import Card from '../components/Card'
+import Card from '../components/plays/Card'
+import Title from '../components/Title'
 function Plays (){
     
     const [videos, setVideos] = useState(null)
@@ -47,9 +48,7 @@ function Plays (){
         <main className={styles.main}>
         {isLoading?<Spinner/>:
         <>
-        <h1 className={styles.title}>
-            Plays
-        </h1>
+        <Title title="Plays"/>
         <iframe width="500px" height="300px" src={`https://www.youtube.com/embed/${videoPrincipalId}?autoplay=0`} frameBorder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <div className={styles.filtersContainer}>
             <input type="text" placeholder="Buscar..." className={styles.searchVideo} onChange={searchVideo}></input>

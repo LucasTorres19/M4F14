@@ -1,0 +1,10 @@
+.title {
+    text-align: center;
+    margin: 1.5rem 0;
+    font-family: var(--font-retro);
+    font-weight: 400;
+    font-size: 2rem;
+    color:var(--primary-color);
+    -webkit-text-stroke: 2px black;
+    text-shadow: -9px 5px 4px rgba(0, 0, 0, 0.25);
+}

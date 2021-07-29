@@ -44,16 +44,15 @@ export default function Home() {
               Descubre los mejores jugadores del año, y vota por tu favorito.
             </p>
           </a>
-
-          <a
-            href="https://twitter.com/LucasTorres112"
-            className={styles.card}
-          >
-            <h2>Mejores jugadas &rarr;</h2>
-            <p>
-              Mira las mejores jugadas y aprende a jugar maldito malo.
-            </p>
-          </a>
+          
+          <Link href="/plays" >
+            <a className={styles.card}>
+              <h2>Mejores jugadas &rarr;</h2>
+              <p>
+                Mira las mejores jugadas y aprende a jugar maldito malo.
+              </p>
+            </a>
+          </Link>
 
           <a
             href="https://twitter.com/LucasTorres112"
@@ -74,15 +73,14 @@ export default function Home() {
               Llora por los difuntos de la M4F14. (¿Qué esperas?)
             </p>
           </a>
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Chismes &rarr;</h2>
-            <p>
-              Averigua porque está pepe en el cementerio.
-            </p>
-          </a>
+          <Link href="/chismes" >
+            <a className={styles.card}>
+              <h2>Chismes &rarr;</h2>
+              <p>
+                Averigua porque está pepe en el cementerio.
+              </p>
+            </a>
+          </Link>
         </div>
         
       </main>
