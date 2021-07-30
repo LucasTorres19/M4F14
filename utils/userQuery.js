@@ -25,6 +25,7 @@ const switchQuery = {
             if(passwordHash){
                 User.create({
                     "user": username,
+                    "permissions": 0,
                     "passwordHash": passwordHash
                 })
                 res.json({userCreated: true})
@@ -47,7 +48,7 @@ const switchQuery = {
             const token = jwt.sign(session, process.env.TOKEN_SECRET, {expiresIn: '8h'})
             res.setHeader('Set-Cookie', cookie.serialize('token', token,{
                 httpOnly: true,
-                secure: process.env.NODE_ENV !== 'development',
+                secure: true,
                 sameSite: 'strict',
                 maxAge: 60*60*8,
                 path: '/'

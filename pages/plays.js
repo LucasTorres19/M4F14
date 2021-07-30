@@ -7,39 +7,26 @@ import sortSwitch from '../utils/sortSwitch'
 import Card from '../components/plays/Card'
 import Title from '../components/Title'
 import Router from 'next/router'
-
+import {useVideos} from '../hooks/useVideos'
 function Plays (){
     
-    const [videos, setVideos] = useState(null)
+    const {videos, setVideos} = useVideos()
     const [videoPrincipalId, setVideoPrincipalId] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [keyword, setKeyword] = useState('')
+    if(videos && isLoading){
+        setVideoPrincipalId(videos[0].videoId)
+        setIsLoading(false)
+    }
     const videosFiltrados = videos?.filter(video => video.title.toLowerCase().includes(keyword))
-    const getData = async () => {
-        try{
-            const data = await fetch('/api/videosHandler', {method: 'GET'})
-            if(data.status === 401) return Router.replace('/login') 
-            const res = await data.json()
-            .then(json=>{
-                setVideos(json.data)
-                setVideoPrincipalId(json.data[0].videoId)
-                setIsLoading(false)
-            })
-        }catch(e){
-            console.error(e)
-        }
-    } 
-    useEffect(()=>{
-        getData()
-    },[])
     const changeIframeSrc = (e, id) => {
-        window.scrollTo(0,0)
         e.preventDefault()
+        window.scrollTo(0,0)
         setVideoPrincipalId(id)
     }
     const addToFavs = (e, id) => {
-        window.scrollTo(0,0)
         e.preventDefault()
+        window.scrollTo(0,0)
         setVideoPrincipalId(id)
     }
 

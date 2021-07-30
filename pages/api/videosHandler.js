@@ -7,6 +7,7 @@ dbConnect();
 export default authenticated(async function handler(req, res){
     const { method } = req
     console.log(method)
+
     switch(method){
         case 'GET':
             try {
@@ -47,9 +48,11 @@ export default authenticated(async function handler(req, res){
                 const videosIds = videos.map(video => {
                     return video.videoId
                 })
-                const views = await getViews(videosIds)
+                const updateData = await getViews(videosIds)
                 for(let i = 0; i<videos.length;i++){
-                    videos[i].views = views[i]
+                    videos[i].views = updateData[i].views
+                    videos[i].like = updateData[i].like
+                    videos[i].dislike = updateData[i].dislike
                     await videos[i].save()
                 }
                 res.status(200).json({success: true})

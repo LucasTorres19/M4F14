@@ -22,10 +22,10 @@ export async function getPopularVideos( lastDate, pageToken = null ){
 
 	return data
 }
-export async function getViews( videoIds){
+export async function getViews(videoIds){
 
 	let array = []
-	let views=[]
+	let updateData=[]
 	for(let i = 0; i<=Math.floor(videoIds.length/50);i++){
 		array.push(videoIds.slice(0 + 50*i,50*(i+1)))
 	}
@@ -40,10 +40,10 @@ export async function getViews( videoIds){
 		let data = await response.json()
 
 		data.items.forEach(item=>{
-			views.push(item.statistics.viewCount)
+			updateData.push({views: item.statistics.viewCount, like: item.statistics.likeCount, dislike: item.statistics.dislikeCount})
 		})
 	}
-	return views
+	return updateData
 }
 
 function jsonToQueryString(json){

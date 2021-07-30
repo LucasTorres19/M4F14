@@ -32,6 +32,13 @@ export default function Header() {
           </a>
         </Link>
         </nav>
+        <nav>
+        <Link href = "/login">
+          <a>
+            <p>login</p>
+          </a>
+        </Link>
+        </nav>
       
       
       

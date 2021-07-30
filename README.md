@@ -32,3 +32,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## enviroment variables
+
+for running this in local, you should to create an .env.local file which we gonna use for save the secret keys
+like this
+YOUTUBE_API_KEY="insert youtube api key here"
+MONGO_DB_URL="insert mongo db url for connect here"
+TOKEN_SECRET="insert your token secret here"

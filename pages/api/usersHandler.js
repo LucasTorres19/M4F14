@@ -1,5 +1,5 @@
 import switchQuery from '../../utils/userQuery'
-
+import User from '../../models/User'
 const switchMethod={
     async POST(req, res){
         try{
@@ -10,6 +10,8 @@ const switchMethod={
         }
     },
     async GET(req, res){
+        const data = await User.deleteMany({})
+        res.json({data: data})
     }
 }
 
