@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/usersHandler
+Content-Type: application/json
+
+{
+    "query": "login",
+    "username": "thiagoessuper2",
+    "password": "123"
+}

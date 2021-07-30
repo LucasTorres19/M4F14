@@ -6,6 +6,8 @@ import Spinner from '../components/Spinner'
 import sortSwitch from '../utils/sortSwitch'
 import Card from '../components/plays/Card'
 import Title from '../components/Title'
+import Router from 'next/router'
+
 function Plays (){
     
     const [videos, setVideos] = useState(null)
@@ -16,6 +18,7 @@ function Plays (){
     const getData = async () => {
         try{
             const data = await fetch('/api/videosHandler', {method: 'GET'})
+            if(data.status === 401) return Router.replace('/login') 
             const res = await data.json()
             .then(json=>{
                 setVideos(json.data)

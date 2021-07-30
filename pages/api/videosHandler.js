@@ -1,10 +1,10 @@
 import dbConnect from "../../utils/mongodb";
 import {getPopularVideos, getViews} from "../../utils/youtubeApi"
 import Video from '../../models/Video'
-
+import authenticated from '../../utils/authenticated'
 dbConnect();
 
-export default async function handler(req, res){
+export default authenticated(async function handler(req, res){
     const { method } = req
     console.log(method)
     switch(method){
@@ -63,4 +63,4 @@ export default async function handler(req, res){
             break;
 
     }
-}
+})

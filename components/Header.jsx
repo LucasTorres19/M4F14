@@ -24,7 +24,15 @@ export default function Header() {
             <p>Chismes</p>
           </a>
         </Link>
-      </nav>
+        </nav>
+        <nav>
+        <Link href = "/signup">
+          <a>
+            <p>Signup</p>
+          </a>
+        </Link>
+        </nav>
+      
       
       
     </header>
