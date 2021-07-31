@@ -35,7 +35,7 @@ export default function Header() {
         <nav>
         <Link href = "/login">
           <a>
-            <p>login</p>
+            <p>Login</p>
           </a>
         </Link>
         </nav>

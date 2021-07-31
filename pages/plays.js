@@ -3,20 +3,17 @@ import { FaSortAmountDownAlt } from 'react-icons/fa'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Spinner from '../components/Spinner'
-import sortSwitch from '../utils/sortSwitch'
 import Card from '../components/plays/Card'
 import Title from '../components/Title'
-import Router from 'next/router'
 import {useVideos} from '../hooks/useVideos'
 function Plays (){
     
-    const {videos, setVideos} = useVideos()
+    const {videos, dispatchVideos} = useVideos()
     const [videoPrincipalId, setVideoPrincipalId] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
     const [keyword, setKeyword] = useState('')
-    if(videos && isLoading){
+    if(videos && !videoPrincipalId){
         setVideoPrincipalId(videos[0].videoId)
-        setIsLoading(false)
+
     }
     const videosFiltrados = videos?.filter(video => video.title.toLowerCase().includes(keyword))
     const changeIframeSrc = (e, id) => {
@@ -26,17 +23,19 @@ function Plays (){
     }
     const addToFavs = (e, id) => {
         e.preventDefault()
-        window.scrollTo(0,0)
-        setVideoPrincipalId(id)
     }
-
     const searchVideo = (e)=>{
         setKeyword(e.target.value)
+    }
+    const videosMap = ()=>{
+        return videosFiltrados.map((item) => {
+            return <Card key={item._id} props = {item} functions={{changeIframeSrc, addToFavs}}/>
+        })
     }
     return (
         
         <main className={styles.main}>
-        {isLoading?<Spinner/>:
+        {!videos?<Spinner/>:
         <>
         <Title title="Plays"/>
         <iframe width="500px" height="300px" src={`https://www.youtube.com/embed/${videoPrincipalId}?autoplay=0`} frameBorder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
@@ -46,7 +45,7 @@ function Plays (){
                 <label htmlFor="select">
                     <FaSortAmountDownAlt />
                 </label>
-                <select id="select" defaultValue="views" onChange={(e) => {setVideos([...sortSwitch(e, videos)])}}className={styles.dropdownContent}>
+                <select id="select" defaultValue="views" onChange={(e) => {dispatchVideos({type:'sortVideos',e})}}className={styles.dropdownContent}>
                     <option value='title' isdesc="true">Alfabeticamente</option>
                     <option value='like' isdesc="true">Más gustados</option>
                     <option value='like' >Menos gustados</option>
@@ -60,18 +59,12 @@ function Plays (){
         
             {
             videosFiltrados.length===0?
-   
             <>
                 <Image src="/notFound.svg" width="250px" height="200px" alt="Not found."></Image>
                 <p>No se encontraron resultados.</p>
             </>
             :<ul className={styles.grid}>
-                {videosFiltrados.map((item) => {
-                
-                return(
-                    <Card key={item._id} props = {item} functions={{changeIframeSrc, addToFavs}}/>
-                )
-            })}
+                {videosMap()}
             </ul>
             }
         </>

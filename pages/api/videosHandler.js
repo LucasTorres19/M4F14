@@ -1,10 +1,10 @@
 import dbConnect from "../../utils/mongodb";
-import {getPopularVideos, getViews} from "../../utils/youtubeApi"
+import {getPopularVideos, updateVideos} from "../../utils/youtubeApi"
 import Video from '../../models/Video'
 import authenticated from '../../utils/authenticated'
 dbConnect();
 
-export default authenticated(async function handler(req, res){
+export default authenticated(async function videosHandler(req, res){
     const { method } = req
     console.log(method)
 
@@ -12,6 +12,7 @@ export default authenticated(async function handler(req, res){
         case 'GET':
             try {
                 const videos = await Video.find({}).sort({views: -1})
+                console.log("hola")
                 res.status(200).json({success: true, data: videos})
             } catch (error) {
                 res.status(400).json({success: false})
@@ -48,7 +49,7 @@ export default authenticated(async function handler(req, res){
                 const videosIds = videos.map(video => {
                     return video.videoId
                 })
-                const updateData = await getViews(videosIds)
+                const updateData = await updateVideos(videosIds)
                 for(let i = 0; i<videos.length;i++){
                     videos[i].views = updateData[i].views
                     videos[i].like = updateData[i].like

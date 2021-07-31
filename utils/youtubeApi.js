@@ -22,7 +22,7 @@ export async function getPopularVideos( lastDate, pageToken = null ){
 
 	return data
 }
-export async function getViews(videoIds){
+export async function updateVideos(videoIds){
 
 	let array = []
 	let updateData=[]
