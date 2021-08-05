@@ -1,8 +1,22 @@
 import styles from '../styles/Header.module.css'
 import Link from 'next/link'
-import { FaRedhat} from 'react-icons/fa'
+import { FaHandPointLeft, FaRedhat, FaThemeco} from 'react-icons/fa'
 
-export default function Header() {
+export default function Header({value}) {
+  
+  const {theme, setTheme} = value 
+
+  const handleChange = ({target}) => {
+    setTheme(prevTheme => {
+      if (prevTheme === 'dark'){
+        window.localStorage.setItem('theme', 'light')
+        return 'light'
+      }
+      window.localStorage.setItem('theme', 'dark')
+      return 'dark'
+    })
+  }
+
   return (
     <header className={styles.container}>
       <Link href="/" >
@@ -40,7 +54,7 @@ export default function Header() {
         </Link>
         </nav>
       
-      
+      <input type="checkbox" checked={theme==='dark'?false:true} onChange={handleChange}/>
       
     </header>
   )

@@ -26,6 +26,7 @@ const switchQuery = {
                 User.create({
                     "user": username,
                     "permissions": 0,
+                    "favPlays": [],
                     "passwordHash": passwordHash
                 })
                 res.json({userCreated: true})
